@@ -39,7 +39,10 @@ public class ChatClient extends Application {
         EspMensajes.setPrefHeight(altoM); 
 
         Button enviarBoton = new Button("Enviar");
-        enviarBoton.setOnAction(e -> sendMessage(messageField.getText()));
+        enviarBoton.setOnAction(e -> {
+            sendMessage(messageField.getText());
+            messageField.clear(); 
+        });
 
         VBox root = new VBox(10, EspMensajes, messageField, enviarBoton);
         Scene scene = new Scene(root, 200, 400);
