@@ -22,16 +22,16 @@ public class ChatClient extends Application {
         pantPrincipalUsuario.setTitle("AppCliente");
         pantPrincipalUsuario.setResizable(false);
 
-        double ancho = 1000; 
-        double alto = 800; 
+        double ancho = 400; 
+        double alto = 500; 
         pantPrincipalUsuario.setWidth(ancho);
         pantPrincipalUsuario.setHeight(alto);
 
         TextField messageField = new TextField();
         EspMensajes = new TextArea(); 
         EspMensajes.setEditable(false);
-        double anchoM = 300; 
-        double altoM = 300; 
+        double anchoM = 350; 
+        double altoM = 350; 
         EspMensajes.setPrefWidth(anchoM); 
         EspMensajes.setPrefHeight(altoM); 
 
@@ -40,7 +40,7 @@ public class ChatClient extends Application {
         //enviarBoton.setOnAction(e -> sendMessage(messageField.getText()));
 
         VBox root = new VBox(10, EspMensajes, messageField, enviarBoton);
-        Scene scene = new Scene(root, 100, 100);
+        Scene scene = new Scene(root, 200, 400);
 
         pantPrincipalUsuario.setScene(scene);
         pantPrincipalUsuario.show();
