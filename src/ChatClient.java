@@ -38,7 +38,6 @@ public class ChatClient extends Application {
         EspMensajes.setPrefWidth(anchoM); 
         EspMensajes.setPrefHeight(altoM); 
 
-
         Button enviarBoton = new Button("Enviar");
         enviarBoton.setOnAction(e -> sendMessage(messageField.getText()));
 
@@ -50,6 +49,9 @@ public class ChatClient extends Application {
 
         nombreUsuario = getUsername();
         ConexionServer();
+
+        Thread readerThread = new Thread(this::readMessages);
+        readerThread.start();
 
     }
     private String getUsername() {
@@ -71,5 +73,17 @@ public class ChatClient extends Application {
 
     private void sendMessage(String message) {
         out.println(message);
+    }
+
+    private void readMessages() {
+        try {
+            Scanner in = new Scanner(socket.getInputStream());
+            while (in.hasNextLine()) {
+                String message = in.nextLine();
+                Platform.runLater(() -> EspMensajes.appendText(message + "\n"));
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
